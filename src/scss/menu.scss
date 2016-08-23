@@ -2,17 +2,17 @@ $menu-size: 60px;
 $item-size: $menu-size - 20px;
 
 .menu{
-	position: absolute;
+	position: fixed;
 	right: 20px;
 	top: 20px;
+  transform: rotate(90deg);
+  filter: url(.#goo);
+  opacity: 0;
 	
 	&_wrapper{
 		position: relative;
-		z-index: 3;
-		transform: rotate(90deg);
 	  height: 60px;
 	  width: 60px;
-	  filter: url(.#goo);
 	}
 
   &_opener,
@@ -29,6 +29,7 @@ $item-size: $menu-size - 20px;
 	  margin-left: -$menu-size/2;
   	margin-top: -$menu-size/2;
     background: $menu-bg;
+    cursor: pointer;
   }
 
   &_btn{
@@ -63,6 +64,10 @@ $item-size: $menu-size - 20px;
 	  	width: 100%;
 	  	height: 100%;
 	  }
+  }
+
+  .active .menu_icon:after{
+    background-color: $menu-active; 
   }
 
   &_main{

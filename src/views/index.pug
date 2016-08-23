@@ -7,299 +7,276 @@ html(lang="en")
 		include favicon.html
 		link(rel="stylesheet", type="text/css", href="style.css")
 	body
-		.loader
-			.loader_bg
-				.loader_circle
 		include vectors.svg
-		.wrapper
-			include menu.pug
+		main.main
 			.logo
 				.logo_wrapper
 					include logo.svg
-			main.main
-				section.section.intro#sec0
-					.intro_bg
-						.intro_bgImg.base
-						.intro_bgImg.top
-						.intro_bgImg.top
-					.intro_text
-						h1.intro_title Catico
-						.intro_subtitle full stack web development
-					a(href="#sec1").intro_link projects
-						.intro_arrows
-							.intro_arrow
-							.intro_arrow
-				section.section.proj#sec1
-					ul.proj_list
+			include menu.pug
+			section.section.intro#intro
+				.intro_text
+					h1.intro_title Catico
+					.intro_subtitle creative web development
+				a(href="#projects").intro_link
+					.intro_arrows
+						.intro_arrow
+							svg
+								use(xlink:href="#arrow")
+						.intro_arrow
+							svg
+								use(xlink:href="#arrow")
+			section.section.proj#projects
+				a(href="#proj1").proj_el
+					.proj_wrap
+						img.proj_img(src="img/calc.png")
+						.proj_poly
+							include calc-hover.svg
+						.proj_overlay
+							.proj_title Calculator
+				a(href="#proj2").proj_el
+					.proj_wrap
+						img.proj_img(src="img/rqm.png")
+						.proj_poly
+							include rqm-hover.svg
+						.proj_overlay
+							.proj_title Random quote machine
+				a(href="#proj3").proj_el
+					.proj_wrap
+						img.proj_img(src="img/md.png")
+						.proj_poly
+							include md-hover.svg
+						.proj_overlay
+							.proj_title Markdown previewer
+				a(href="#proj4").proj_el
+					.proj_wrap
+						img.proj_img(src="img/votex.png")
+						.proj_poly
+							include votex-hover.svg
+						.proj_overlay
+							.proj_title Voting app
+				a(href="#proj5").proj_el
+					.proj_wrap
+						img.proj_img(src="img/pom.png")
+						.proj_poly
+							include pom-hover.svg
+						.proj_overlay
+							.proj_title Pomodoro timer
+				a(href="#proj6").proj_el
+					.proj_wrap
+						img.proj_img(src="img/fb.png")
+						.proj_poly
+							include fb-hover.svg
+						.proj_overlay
+							.proj_title Facebook clone
+			section.section.skills#skills
+				h2.skills_title About me
+				.skills_col
+					p.skills_about I'm Katarina, a 26-year-old web developer currently based in Prague, Czech Republic. I have passion for design and animation and love creating websites with great visual experience.
+					ul.skills_icons
 						li
-							.proj_img(style="background-image: url('img/projects/proj1.png')")
-							.proj_overlay
-								.proj_title Calculator
-								.proj_descr Javascript calculator
-								.proj_links
-									a(href="calculator", target="_blank").proj_link
-										svg
-											use(xlink:href="#link")
-										span demo
-									a(href="http://codepen.io/catico/full/BjzzrQ/", target="_blank").proj_link
-										svg
-											use(xlink:href="#codepen")
-										span codepen
-									a(href="https://github.com/CATlCO/calculator", target="_blank").proj_link
-										svg
-											use(xlink:href="#github")
-										span github
-								.proj_tags #html #css #js #jquery
+							i.skills_icon.devicon-inkscape-plain-wordmark
 						li
-							.proj_imgs
-								img.single(src='img/projects/rqm.png', alt="Random quote machine")
-							.proj_overlay
-								.proj_title Quote machine
-								.proj_descr Generator of random quotes.
-								.proj_links
-									a(href="quotemachine", target="_blank").proj_link
-										svg
-											use(xlink:href="#link")
-										span demo
-									a(href="http://codepen.io/catico/full/obzWZw/", target="_blank").proj_link
-										svg
-											use(xlink:href="#codepen")
-										span codepen
-									a(href="https://github.com/CATlCO/quotemachine", target="_blank").proj_link
-										svg
-											use(xlink:href="#github")
-										span github
-								.proj_tags #html #css #js #jquery #api
+							i.skills_icon.devicon-photoshop-plain.smaller
 						li
-							.proj_imgs
-								img.single(src='img/projects/proj3.png', alt="Markdown previewer")
-							.proj_overlay
-								.proj_title Markdown previewer
-								.proj_descr Markdown previewer in React
-								.proj_links
-									a(href="react-markdown", target="_blank").proj_link
-										svg
-											use(xlink:href="#link")
-										span demo
-									a(href="http://codepen.io/catico/full/pbdNdB/", target="_blank").proj_link
-										svg
-											use(xlink:href="#codepen")
-										span codepen
-									a(href="https://github.com/CATlCO/react-markdown", target="_blank").proj_link
-										svg
-											use(xlink:href="#github")
-										span github
-								.proj_tags #html #css #sass #react
+							i.skills_icon.devicon-html5-plain-wordmark
 						li
-							.proj_imgs
-								.double
-									img(src='img/projects/pom1.png', alt="Pomoro app - work")
-									img(src='img/projects/pom2.png', alt="Pomoro app - break")
-							.proj_overlay
-								.proj_title Pomodoro
-								.proj_descr Pomodoro timer in Javascript.
-								.proj_links
-									a(href="pomodoro", target="_blank").proj_link
-										svg
-											use(xlink:href="#link")
-										span demo
-									a(href="http://codepen.io/catico/full/QygLMg/", target="_blank").proj_link
-										svg
-											use(xlink:href="#codepen")
-										span codepen
-									a(href="https://github.com/CATlCO/pomodoro", target="_blank").proj_link
-										svg
-											use(xlink:href="#github")
-										span github
-								.proj_tags #html #css #js #jquery #greensock
+							i.skills_icon.devicon-css3-plain-wordmark
 						li
-							.proj_imgs
-								img.single(src='img/projects/proj6.png', alt="Facebook clone")
-							.proj_overlay
-								.proj_title Facebook clone
-								.proj_descr Simple clone of Facebook with basic functionality built in Ruby on Rails.
-								.proj_links
-									a(href="http://odinfacebook.herokuapp.com", target="_blank").proj_link
-										svg
-											use(xlink:href="#link")
-										span demo
-									a(href="https://github.com/CATlCO/odin_facebook", target="_blank").proj_link
-										svg
-											use(xlink:href="#github")
-										span github
-								.proj_tags #html #bootstrap #css #sass #ruby #rails #heroku
+							i.skills_icon.devicon-sass-plain
 						li
-							.proj_imgs
-								img.single(src='img/projects/votex.png', alt="Votex app")
-							.proj_overlay
-								.proj_title Votex
-								.proj_descr Application for creating polls.
-								.proj_links
-									a(href="http://votexapp.herokuapp.com/", target="_blank").proj_link
-										svg
-											use(xlink:href="#link")
-										span demo
-									a(href="https://github.com/CATlCO/votingapp", target="_blank").proj_link
-										svg
-											use(xlink:href="#github")
-										span github
-								.proj_tags #html #css #sass #js #nodejs #heroku #mongodb #api
-				section.section.skills#sec2
-					.skills_left
-						h2.skills_title Skills
-						ul.skills_list
-							li design
-							li development
-							li ui / ux
-							li responsivity
-							li cross-browser compatibility
-							li mobile / desktop
-					.skills_right
-						ul.skills_icons.shadow
-							li.layer(data-level="0.5")
-								i.skills_icon.devicon-inkscape-plain-wordmark
-							li.layer(data-level="0.1")
-								i.skills_icon.devicon-mysql-plain-wordmark
-							li.layer(data-level="0.9")
-								i.skills_icon.devicon-github-plain-wordmark
-							li.layer(data-level="0.5")
-								i.skills_icon.devicon-ruby-plain-wordmark
-							li.layer(data-level="0.9")
-								i.skills_icon.devicon-css3-plain-wordmark
-							li.layer(data-level="0.1")
-								i.skills_icon.devicon-photoshop-plain
-							li.layer(data-level="0.9")
-								i.skills_icon.devicon-jquery-plain-wordmark
-							li.layer(data-level="0.5")
-								i.skills_icon.devicon-bootstrap-plain-wordmark
-							li.layer(data-level="0.1")
-								i.skills_icon.devicon-grunt-plain-wordmark
-							li.layer(data-level="0.5")
-								i.skills_icon.devicon-heroku-plain-wordmark
-							li.layer(data-level="0.9")
-								i.skills_icon.devicon-sass-plain
-							li.layer(data-level="0.5")
-								i.skills_icon.devicon-gulp-plain
-							li.layer(data-level="0.9")
-								i.skills_icon.devicon-javascript-plain
-							li.layer(data-level="0.1")
-								i.skills_icon.devicon-react-plain-wordmark
-							li.layer(data-level="0.9")
-								i.skills_icon.devicon-html5-plain-wordmark
-							li.layer(data-level="0.1")
-								i.skills_icon.devicon-nodejs-plain-wordmark
-							li.layer(data-level="0.9")
-								i.skills_icon.devicon-git-plain-wordmark
-							li.layer(data-level="0.1")
-								i.skills_icon.devicon-mongodb-plain-wordmark
-							li.layer(data-level="0.5")
-								i.skills_icon.devicon-less-plain-wordmark
-							li.layer(data-level="0.9")
-								i.skills_icon.devicon-bitbucket-plain-wordmark
-							li.layer(data-level="0.1")
-								i.skills_icon.devicon-rails-plain-wordmark
-							li.layer(data-level="0.5")
-								i.skills_icon
-									.skills_iconsvg
-										svg
-											use(xlink:href="#greensock")
-						ul.skills_icons#icons
-							li.layer(data-level="0.6")
-								i.skills_icon.devicon-inkscape-plain-wordmark
-							li.layer(data-level="0.2")
-								i.skills_icon.devicon-mysql-plain-wordmark
-							li.layer(data-level="1")
-								i.skills_icon.devicon-github-plain-wordmark
-							li.layer(data-level="0.6")
-								i.skills_icon.devicon-ruby-plain-wordmark
-							li.layer(data-level="1")
-								i.skills_icon.devicon-css3-plain-wordmark
-							li.layer(data-level="0.2")
-								i.skills_icon.devicon-photoshop-plain
-							li.layer(data-level="1")
-								i.skills_icon.devicon-jquery-plain-wordmark
-							li.layer(data-level="0.6")
-								i.skills_icon.devicon-bootstrap-plain-wordmark
-							li.layer(data-level="0.2")
-								i.skills_icon.devicon-grunt-plain-wordmark
-							li.layer(data-level="0.6")
-								i.skills_icon.devicon-heroku-plain-wordmark
-							li.layer(data-level="1")
-								i.skills_icon.devicon-sass-plain
-							li.layer(data-level="0.6")
-								i.skills_icon.devicon-gulp-plain
-							li.layer(data-level="1")
-								i.skills_icon.devicon-javascript-plain
-							li.layer(data-level="0.2")
-								i.skills_icon.devicon-react-plain-wordmark
-							li.layer(data-level="1")
-								i.skills_icon.devicon-html5-plain-wordmark
-							li.layer(data-level="0.2")
-								i.skills_icon.devicon-nodejs-plain-wordmark
-							li.layer(data-level="1")
-								i.skills_icon.devicon-git-plain-wordmark
-							li.layer(data-level="0.2")
-								i.skills_icon.devicon-mongodb-plain-wordmark
-							li.layer(data-level="0.6")
-								i.skills_icon.devicon-less-plain-wordmark
-							li.layer(data-level="1")
-								i.skills_icon.devicon-bitbucket-plain-wordmark
-							li.layer(data-level="0.2")
-								i.skills_icon.devicon-rails-plain-wordmark
-							li.layer(data-level="0.6")
-								i.skills_icon
-									.skills_iconsvg
-										svg
-											use(xlink:href="#greensock")
-				section.section.contact#sec3
-					.contact_left
-						.contact_icons
-							h2.contact_title Get in touch
-							.icons
-								a.icons_el(href="https://github.com/CATlCO", target="_blank")
-									.icons_icon
-										svg
-											use(xlink:href="#github")
-									h3.icons_title Checkout my code at 
-										span Github
-								a.icons_el(href="http://codepen.io/catico/", target="_blank")
-									.icons_icon
-										svg
-											use(xlink:href="#codepen")
-									h3.icons_title See my other projects at 
-										span Codepen
-								a.icons_el(href="mailto:hello@catico.xyz")
-									.icons_icon
-										svg
-											use(xlink:href="#email")
-									h3.icons_title Say hi at 
-										span hello@catico.xyz
-					.contact_right
-						.contact_form
-							.contact_overlay Thank you! I'll be in touch soon.
-							form#contact_form(autocomplete="off", novalidate)
-								span.contact_input
-									input.contact_field#input-1(type="text", name="name", required)
-									.contact_error(data-name="name") Please provide your name
-									label.contact_label(for="input-1")
-										svg.contact_border
-											use(xlink:href="#input")
-										span.contact_labelName Name
-								span.contact_input
-									input.contact_field#input-2(type="email", name="_reply_to", pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$", required)
-									.contact_error(data-name="_reply_to") Please provide a valid email address
-									label.contact_label(for="input-2")
-										svg.contact_border
-											use(xlink:href="#input")
-										span.contact_labelName Email
-								span.contact_input
-									textarea.contact_field.contact_msg#input-3(name="message", required)
-									.contact_error(data-name="message") Please provide a message
-									label.contact_label(for="input-3")
-										svg.contact_border.msg
-											use(xlink:href="#textarea")
-										span.contact_labelName Message
-								button.contact_submit(type="submit", value="Send") 
-									span Send
-					.contact_cp Copyright 2016 Catico. All rights reserved.
+							i.skills_icon.devicon-less-plain-wordmark
+						li
+							i.skills_icon.devicon-bootstrap-plain-wordmark
+						li
+							i.skills_icon.devicon-javascript-plain.smaller
+						li
+							i.skills_icon.devicon-jquery-plain-wordmark
+						li
+							i.skills_icon
+								.skills_iconsvg
+									svg
+										use(xlink:href="#greensock")
+						li
+							i.skills_icon.devicon-react-plain-wordmark
+				.skills_col
+					ul.skills_icons
+						li
+							i.skills_icon.devicon-git-plain-wordmark
+						li
+							i.skills_icon.devicon-github-plain-wordmark
+						li
+							i.skills_icon.devicon-bitbucket-plain-wordmark
+						li
+							i.skills_icon.devicon-gulp-plain
+						li
+							i.skills_icon.devicon-grunt-plain-wordmark
+						li
+							i.skills_icon.devicon-nodejs-plain-wordmark.larger
+						li
+							i.skills_icon.devicon-ruby-plain-wordmark
+						li
+							i.skills_icon.devicon-rails-plain-wordmark
+						li
+							i.skills_icon.devicon-heroku-plain-wordmark
+						li
+							i.skills_icon.devicon-mongodb-plain-wordmark
+						li
+							i.skills_icon.devicon-mysql-plain-wordmark
+					.skills_list d e s i g n <span></span> d e v e l o p m e n t <span></span> u i / u x <span></span> r e s p o n s i v i t y <span></span> c r o s s - b r o w s e r &nbsp; c o m p a t i b i l i t y <span></span> m o b i l e / d e s k t o p
+			section.section.contact#contact
+				h2.contact_title Get in touch
+				.contact_left
+					.contact_icons
+						.icons
+							a.icons_el(href="https://github.com/CATlCO", target="_blank")
+								.icons_icon
+									svg
+										use(xlink:href="#github")
+								h3.icons_title Checkout my code at 
+									span Github
+							a.icons_el(href="http://codepen.io/catico/", target="_blank")
+								.icons_icon
+									svg
+										use(xlink:href="#codepen")
+								h3.icons_title See my other projects at 
+									span Codepen
+							a.icons_el(href="mailto:hello@catico.xyz")
+								.icons_icon
+									svg
+										use(xlink:href="#email")
+								h3.icons_title Say hi at 
+									span hello@catico.xyz
+							.icons_el#hire
+								.icons_icon
+									svg
+										use(xlink:href="#happy")
+								h3.icons_title Hire 
+									span me
+				.contact_right
+					.contact_form
+						.contact_overlay Thank you! I'll be in touch soon.
+						form#contact_form(autocomplete="off", novalidate)
+							span.contact_input
+								input.contact_field#input-1(type="text", name="name", required)
+								.contact_error(data-name="name") Please provide your name
+								label.contact_label(for="input-1")
+									svg.contact_border
+										use(xlink:href="#input")
+									span.contact_labelName Name
+							span.contact_input
+								input.contact_field#input-2(type="email", name="_reply_to", pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$", required)
+								.contact_error(data-name="_reply_to") Please provide a valid email address
+								label.contact_label(for="input-2")
+									svg.contact_border
+										use(xlink:href="#input")
+									span.contact_labelName Email
+							span.contact_input
+								textarea.contact_field.contact_msg#input-3(name="message", required)
+								.contact_error(data-name="message") Please provide a message
+								label.contact_label(for="input-3")
+									svg.contact_border.msg
+										use(xlink:href="#textarea")
+									span.contact_labelName Message
+							button.contact_submit(type="submit", value="Send") 
+								span Send
+				.contact_cp Copyright 2016 Catico. All rights reserved.
+			.lightbox
+				.lightbox_container
+					#proj1.lightbox_el
+						.lightbox_title Calculator
+						img.lightbox_img(src='img/calc.gif')
+						p.lightbox_descr
+							| Simple javascript calculator that works great both with mouse and keyboard and is fully responsive.
+						.lightbox_tags #html #css #js #jquery
+						.lightbox_links
+							a.lightbox_link(href='calculator', target='_blank')
+								svg
+									use(xlink:href='#link')
+							a.lightbox_link(href='http://codepen.io/catico/full/BjzzrQ/', target='_blank')
+								svg
+									use(xlink:href='#codepen')
+							a.lightbox_link(href='https://github.com/CATlCO/calculator', target='_blank')
+								svg
+									use(xlink:href='#github')
+					#proj2.lightbox_el
+						.lightbox_title Random quote machine
+						img.lightbox_img(src='img/rqm.gif')
+						p.lightbox_descr
+							| Press the buton to get inspired by a random quote from this adorable quote machine. The quotes are generated using API from forismatic.com. 
+						.lightbox_tags #html #css #js #jquery #api
+						.lightbox_links
+							a.lightbox_link(href='quotemachine', target='_blank')
+								svg
+									use(xlink:href='#link')
+							a.lightbox_link(href='http://codepen.io/catico/full/obzWZw/', target='_blank')
+								svg
+									use(xlink:href='#codepen')
+							a.lightbox_link(href='https://github.com/CATlCO/quotemachine', target='_blank')
+								svg
+									use(xlink:href='#github')
+					#proj3.lightbox_el
+						.lightbox_title Markdown previewer
+						img.lightbox_img(src='img/md.gif')
+						p.lightbox_descr
+							| Markdown previewer built in React. Type Github-flavored Markdown into a text area and see instant preview of your output that is updated as you type.
+						.lightbox_tags #html #css #sass #react
+						.lightbox_links
+							a.lightbox_link(href='react-markdown', target='_blank')
+								svg
+									use(xlink:href='#link')
+							a.lightbox_link(href='http://codepen.io/catico/full/pbdNdB/', target='_blank')
+								svg
+									use(xlink:href='#codepen')
+							a.lightbox_link(href='https://github.com/CATlCO/react-markdown', target='_blank')
+								svg
+									use(xlink:href='#github')
+					#proj4.lightbox_el
+						.lightbox_title Voting app
+						img.lightbox_img(src='img/votex.gif')
+						p.lightbox_descr
+							| Votex is a simple application built in Nodejs, where users can create polls, vote on polls created by other users and share their polls on social networks. The charts are generated using Chartjs library and stored in Mongodb database.
+						.lightbox_tags #html #css #sass #js #nodejs #heroku #mongodb #api
+						.lightbox_links
+							a.lightbox_link(href='http://votexapp.herokuapp.com/', target='_blank')
+								svg
+									use(xlink:href='#link')
+							a.lightbox_link(href='https://github.com/CATlCO/votingapp', target='_blank')
+								svg
+									use(xlink:href='#github')
+					#proj5.lightbox_el
+						.lightbox_title Pomodoro timer
+						img.lightbox_img(src='img/pom.gif')
+						p.lightbox_descr
+							| Pomodoro is a timer based on Pomodoro technique of 25 minutes of work and 5 minutes of break, however the work and break times are fully customizable. 
+						.lightbox_tags #html #css #js #jquery #greensock
+						.lightbox_links
+							a.lightbox_link(href='pomodoro', target='_blank')
+								svg
+									use(xlink:href='#link')
+							a.lightbox_link(href='http://codepen.io/catico/full/QygLMg/', target='_blank')
+								svg
+									use(xlink:href='#codepen')
+							a.lightbox_link(href='https://github.com/CATlCO/pomodoro', target='_blank')
+								svg
+									use(xlink:href='#github')
+					#proj6.lightbox_el
+						.lightbox_title Facebook clone
+						img.lightbox_img(src='img/fb.gif')
+						p.lightbox_descr
+							| Clone of Facebook with basic functionality built in Ruby on Rails, where users can register, create posts, add friends, like and comments on other users' posts, etc.
+						.lightbox_tags #html #bootstrap #css #sass #ruby #rails #heroku
+						.lightbox_links
+							a.lightbox_link(href='http://odinfacebook.herokuapp.com', target='_blank')
+								svg
+									use(xlink:href='#link')
+							a.lightbox_link(href='https://github.com/CATlCO/odin_facebook', target='_blank')
+								svg
+									use(xlink:href='#github')
+					.lightbox_close
+					.lightbox_left
+						svg
+							use(xlink:href='#arrow')
+					.lightbox_right
+						svg
+							use(xlink:href='#arrow')
 		script(src="script.js")

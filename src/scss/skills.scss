@@ -1,186 +1,118 @@
 .skills{
-	background-color: $skill-bg;
-	text-align: right;
 	font-size: 0;
+	position: relative;
 
-	&:before{
-		content: '';
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: url(img/poly.png) center / cover no-repeat;
-		opacity: 0.2;
-	}
-
-	&_right,
-	&_left{
-		height: 100%;
+	&_col{
 		display: inline-block;
+		width: 50%;
 		vertical-align: top;
 	}
 
-	&_right{
-		width: 60%;
-		text-align: right;
-		position: relative;
+	&_about{
+		color: $icon-text;
+		font-size: 30px;
+		font-weight: 300;
+		line-height: 1.2;
 	}
 
-	&_left{
-		background-color: $section-left;
-		transform: skewX(-#{$skew}deg);
-		position: relative;
-		width: 40%;
-		text-align: right;
-		padding: 80px 40px 0 0;
-		z-index: 1;
+	&_about{
+		margin: 0 50px 50px 0;
 	}
 
 	&_title{
 		color: $skill-title;
-		font-family: 'Wire One';
+		font-family: $font1;
 		font-size: 100px;
+		font-weight: 200;
 		margin-bottom: 40px;
-		transform: skewX(#{$skew}deg);
 	}
 
 	&_list{
 		margin-top: 50px;
-		margin-left: 10px;
+		margin-left: 50px;
+		color: $icon-text;
+		font-size: 28px;
+		font-weight: 300;
+		line-height: 1.5;
 
-		li{
-			color: $icon-text;
-			font-size: 30px;
-			margin-bottom: 5vh;
-			font-weight: 200;
-			transform: skewX(#{$skew}deg);
-			padding-left: 30px;
+		span{
+			content: '';
+			display: inline-block;
+			height: 1px;
+			width: 30px;
+			background-color: $icon-text;
+			margin: 0 10px 8px 10px;
 		}
 	}
 
 	&_icons{
 		color: $skill-col;
-		transform: translate3d(0, 0, 0);
-		transform-style: preserve-3d;
-		backface-visibility: hidden;
-		padding: 20px;
 
 		li{
 			display: inline-block;
-			height: 25vh;
-			position: relative;
-			transform-style: preserve-3d;
-			backface-visibility: hidden;
+			text-align: center;
+			vertical-align: middle;
+			width: 16.66%;
 
-			&:nth-of-type(1){
-				margin-left: 15%;
+			&:nth-of-type(even){
+				padding: 100px 0 0 0;
 			}
 
-			&:nth-of-type(4){
-				margin-right: 15%;
-			}
-
-			&:nth-of-type(5){
-				margin-left: 10%;
-			}
-
-			&:nth-of-type(10){
-				margin-left: 7%;
-			}
-
-			&:nth-of-type(-n+4){
-				width: 17%;
-			}
-
-			&:nth-of-type(n+5):nth-of-type(-n+9){
-				width: 18%;
-			}
-
-			&:nth-of-type(n+10):nth-of-type(-n+15){
-				width: 15.5%;
-			}
-
-			&:nth-of-type(n+16):nth-of-type(-n+22){
-				width: 14.28%;
-			}
-		}
-
-		&.shadow{
-			color: $skill-shadow;
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			top: 0;
-			right: 0;
-			opacity: 0.4;
-
-			.skills_iconsvg svg{
-				fill: $skill-shadow;
+			&:nth-of-type(odd){
+				padding: 0 0 100px 0;
 			}
 		}
 	}
 
 	&_icon{
-		font-size: 11vmin;
+		font-size: 70px;
 		display: inline-block;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
+
+		&.smaller{
+			font-size: 60px;
+		}
+
+		&.larger{
+			font-size: 90px;
+		}
 	}
 
 	&_iconsvg{
 		display: inline-block;
-		width: 11vmin;
-		height: 11vmin;
+		width: 80px;
+		height: 80px;
 
 		svg{
 			width: 100%;
 			height: 100%;
 			fill: $skill-col;
+			stroke: $skill-bg;
 		}
 	}
 }
 
-@media screen and (max-height: 650px) and (min-width: $mobile){
+@media screen and (max-width: 1200px){
 	.skills{
-		display: table;
-		width: 100%;
-
-		&_list {
-			margin: 20px 0 50px;
-
-			li{
-				font-size: 28px;
-			}
-		} 
 		
-
-		&_left,
-		&_right{
-			display: table-cell;
+		&_title{
+			font-size: 70px;
 		}
 
-		&_left{
-			padding-top: 40px;
-		}
-
-		&_icons{
-			position: absolute;
-	    width: 100%;
-	    height: 100%;
-	    top: 0;
-	    right: 0;
-		}
-
-		&_icons li {
-			height: 25%;
+		&_about, 
+		&_list{
+			font-size: 25px;
 		}
 
 		&_icon{
-			font-size: 60px;
+			font-size: 50px;
+
+			&.smaller{
+				font-size: 40px;
+			}
+
+			&.larger{
+				font-size: 70px;
+			}
 		}
 
 		&_iconsvg{
@@ -190,66 +122,36 @@
 	}
 }
 
-@media screen and (max-width: $mobile){
+@media screen and (max-width: 768px){
 	.skills{
-
-		&_left,
-		&_right{
+		
+		&_col{
+			position: relative;
 			width: 100%;
-			padding: 0;
-		}
-
-		&_right{
-			text-align: center;
-		}
-
-		&_left{
-			transform: skewY(-10deg);
-			transform-origin: top left;
-			text-align: left;
-			padding: 50px 0 0 20px;
-
-			li{
-				font-size: 23px;
-			}
-		}
-
-		&_title,
-		&_list{
-			margin: 20px 0 20px;
-		}
-
-		&_title, &_list li{
-			transform: skewY(10deg);
-		}
-
-		&_list li{
-			padding-left: 0;
+			height: 360px;
 		}
 
 		&_icons{
-			color: $skill-col;
-			padding: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			opacity: 0.3;
+		}
+	}
+}
 
-			li{
-				display: inline-block;
-				height: 20vh;
-				position: relative;
-
-				&:nth-of-type(n){
-					margin: 0;
-					width: 16.6%;
-				}
-			}
+@media screen and (max-width: 500px){
+	.skills{
+		
+		&_title{
+			font-size: 50px;
 		}
 
-		&_icon{
-			font-size: 13vmin;
-		}
-
-		&_iconsvg{
-			width: 13vmin;
-			height: 13vmin;
+		&_about, 
+		&_list{
+			font-size: 20px;
+			line-height: 1.5;
 		}
 	}
 }

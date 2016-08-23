@@ -1,17 +1,19 @@
 .contact{
-	background: linear-gradient(to bottom, #002f2f 0%,#2e2e27 100%);
-	padding: 100px 20px 50px;
 	position: relative;
+	overflow: hidden;
 
 	&_overlay{
 		color: $contact-text;
 		position: absolute;
+		top: -10px;
+		left: 0;
 		width: 100%;
 		font-size: 50px;
-		padding: 150px 40px 0;
+		padding: 150px 40px;
 		font-weight: 200;
 		opacity: 0;
 		transition: opacity 1s ease-out;
+		background: $bg;
 	}
 
 	&_left, 
@@ -21,12 +23,8 @@
 		width: 50%;
 	}
 
-	&_left{
-		text-align: right;
-	}
-
 	&_right{
-		padding-left: 6%;
+		padding-left: 9%;
 	}
 
 	&_icons{
@@ -36,17 +34,18 @@
 
 	&_title{
 		color: $contact-title;
-		font-family: 'Wire One';
+		font-family: $font1;
 		font-size: 100px;
-		margin-bottom: 8vh;
+		margin-bottom: 50px;
+		font-weight: 200;
 	}
 
 	&_form{
 		font-size: 20px;
 		text-align: center;
 		position: relative;
-		max-width: 400px;
 		min-height: 400px;
+		margin-top: -25px;
 
 		&.done{
 
@@ -81,7 +80,6 @@
 		z-index: 1;
 		display: inline-block;
 		margin: 1.1em;
-		max-width: 350px;
 		width: calc(100% - 2em);
 		vertical-align: top;
 		transition: opacity 1s ease-out;
@@ -95,7 +93,7 @@
 		padding: 0.8em;
 		border: none;
 		border-radius: 0;
-		font-family: 'Raleway';
+		font-family: $font2;
 		-webkit-appearance: none;
 		width: 100%;
 		background: transparent;
@@ -153,7 +151,7 @@
 		padding: 0;
 		line-height: 50px;
 		position: relative;
-		font-family: 'Raleway';
+		font-family: $font2;
 		color: $contact-text;
 		font-size: 20px;
 		text-transform: uppercase;
@@ -238,6 +236,7 @@
 		.contact_labelName {
 			transform: scale3d(0.81, 0.81, 1) translate3d(-0.8em, -3em, 0);
 			color: $contact-hover;
+			font-weight: 500;
 		}
 
 		svg{
@@ -295,40 +294,47 @@
   }
 }
 
-@media screen and (max-height: 650px) and (min-width: $mobile){
+@media screen and (max-width: 1200px){
 	.contact{
-
-		&_msg{
-			height: 150px;
+		
+		&_title{
+			font-size: 70px;
 		}
 
-		&_border.msg{
-			stroke-width: 5px;
+		&_input {
+			margin: 1.1em 0;
+			width: 100%;
 		}
 	}
 }
 
-@media screen and (max-width: $mobile){
+@media screen and (max-width: 768px){
 	.contact{
-		padding-top: 50px;
-		padding-bottom: 220px;
-
-		&_left,
+		
 		&_right{
 			width: 100%;
-			text-align: center;
-			margin: 0;
 			padding: 0;
-		}
-
-		&_form{
+			max-width: 400px;
 			margin: 0 auto;
+			display: block;
+			margin-bottom: 150px;
 		}
 
-		&_title{
-			margin-bottom: 20px;
+		&_icons{
+			position: absolute;
+			left: 0;
+			bottom: 40px;
+			width: 100%;
+			text-align: center;
 		}
 	}
 }
 
-
+@media screen and (max-width: 500px){
+	.contact{
+		
+		&_title{
+			font-size: 50px;
+		}
+	}
+}

@@ -14,6 +14,7 @@
 	}
 
 	function open(){
+		$menu.classList.toggle('open');
 		TweenLite.to($burger,0.1,{
 			scaleX:1.2,
 			scaleY:0.8,
@@ -32,8 +33,7 @@
 			}
 		});
 		$menuBtn.forEach(function(el, i){
-			el.style.cssText = "z-index:"+(1-i);
-			TweenLite.to(el,1.1*(i+1),{
+			TweenLite.to(el,0.8*(i+1),{
 				x:(i+1)*spacing,
 				scaleY:0.8,
 				scaleX:1.1,
@@ -57,17 +57,18 @@
 		});
 	}
 	function close(){
-		TweenLite.to([$burger,$burger.children[0]],1.4,{
+		TweenLite.to([$burger,$burger.children[0]],0.1,{
 			delay:0.1,
 			scale:1,
 			ease:Elastic.easeOut,
-			easeParams:[1.1,0.3]
+			easeParams:[1.1,0.3],
+			onComplete:function(){
+				$menu.classList.toggle('open');
+			}
 		});
 		$menuBtn.forEach(function(el, i){
 			var dist=Math.abs(i+1);
-			el.style.cssText = "z-index:"+dist;
-
-			TweenLite.to(el,0.4+((-dist)*0.1),{
+			TweenLite.to(el,0.8+((-dist)*0.1),{
 				x:0,
 				scale:0.95,
 				ease:Quad.easeInOut
@@ -82,12 +83,16 @@
 
 	function toggle(){
 		menuOpen=!menuOpen;
-		$menu.classList.toggle('open');
-
 		menuOpen ? open() : close();
 	}
 	$burger.addEventListener('mousedown',function(){
 		toggle();
+	});
+
+	$menuBtn.forEach(function(el, i){
+		el.addEventListener('click',function(){
+			toggle();
+		});
 	});
 	
 }());

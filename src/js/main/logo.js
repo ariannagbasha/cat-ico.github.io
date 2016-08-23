@@ -15,8 +15,14 @@
 		paths = [].slice.call(document.querySelectorAll('.logo .shape path'));
 
 		this.intro = this.intro.bind(this);
-		this.resize = this.resize.bind(this);
 		this.clearProps = this.clearProps.bind(this);
+
+		shuffle(paths);
+		this.scale = new TimelineMax({paused: true});
+		this.scale
+			.staggerFromTo(paths, 0.25,  {opacity: 1}, {opacity: 0}, 0.01)
+			.set(logo, {className: '+=corner'})
+			.staggerFromTo(paths, 0.25,  {opacity: 0}, {opacity: 1}, 0.01);
 	}
 
 	var rand = function() {
@@ -40,23 +46,6 @@
 		);
 		if (rotate) rotate.kill();
 		clearInterval(interval);
-	};
-
-	Logo.prototype.resize = function(){
-		this.scale = new TimelineLite({paused: true, 
-			onReverseComplete: this.clearProps });
-
-		this.scale
-			.to(logo, 0.8,
-				{width: 'auto', height: 'auto', cursor: 'pointer'}, 
-				0)
-			.to(wrapper, 0.8,
-				{top: '20px', left: '20px', x: '0%'}, 
-				0)
-			.to(svg, 0.8, 
-				{width: 80, height: 80, fill: 'white', stroke: 'white', strokeOpacity: '0.9'}, 
-				0);
-		
 	};
 
 	Logo.prototype.clearProps = function(){
@@ -104,7 +93,6 @@
 	};
 
 	Logo.prototype.loading = function(){
-		shuffle(paths);
 		TweenMax.staggerTo(paths, 0.3, {opacity: 1, ease: Circ.easeIn, yoyo: true, repeat: -1}, 0.03);
 	};
 

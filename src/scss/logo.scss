@@ -1,8 +1,11 @@
 .logo{
 	position: absolute;
-	z-index: 4;
-	width: 100%;
-	height: 90%;
+	z-index: 5;
+	width: 100vw;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: $bg;
 
 	&_wrapper{
 		position: absolute;
@@ -16,8 +19,8 @@
 		stroke-opacity: 0.3;
 		width: 100px;
 		height: 100px;
-		fill: $bg;
-		stroke: $bg;
+		fill: $white;
+		stroke: $white;
 	}
 
 	path{
@@ -48,10 +51,10 @@
 	}
 
 	&.main{
+		background: transparent;
 
 		.logo_wrapper{
-		top: 15%;
-		transform: translateX(-50%);
+			margin-left: -230px;
 
 			&:hover{
 				padding: 0 50%;
@@ -59,32 +62,62 @@
 		}
 
 		svg{
-			width: 41vh;
-			height: 41vh;
+			width: 280px;
+			height: 280px;
 			fill: url(.#g443);
 			stroke: url(.#g443);
 		}
 	}
-}
 
-@media screen and (max-width: $mobile), screen and (max-height: $minHeight){
-	.logo.main{
+	&.corner{
 		width: auto;
 		height: auto;
-		top: 15%;
-		position: relative;
+		cursor: pointer;
+		position: fixed;
 
-		&_wrapper{
-			top: 10%;
-
-			&:hover{
-				padding: 0;
-			}
+		.logo_wrapper{
+			top: 20px;
+			left: 20px;
+			transform: none;
+			margin: 0;
 		}
 
 		svg{
-			min-height: 200px;
-			min-width: 200px;
+			width: 80px;
+			height: 80px;
+			fill: $white;
+			stroke: $white;
+			stroke-opacity: 0.9;
+		}
+	}
+}
+
+@media screen and (max-width: 1200px){
+	.logo.main:not(.corner){
+
+		svg{
+			width: 250px;
+			height: 250px;
+		}
+	}
+}
+
+@media screen and (max-width: 900px){
+	.logo.main{
+
+		.logo_wrapper{
+			margin-left: 0;
+			margin-top: -100px;
+		}
+	}
+}
+
+@media screen and (max-width: 500px){
+	.logo.main:not(.corner){
+
+		svg{
+			width: 200px;
+			height: 200px;
 		}
 	}
 }

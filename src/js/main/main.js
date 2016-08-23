@@ -1,112 +1,124 @@
 (function() {
 	var logo = new Logo();
 	logo.loading();
+	window.onbeforeunload = function(){ window.scrollTo(0,0); }
 
 // loading
 	window.addEventListener('DOMContentLoaded', function(){
-		var loader = document.querySelector('.loader'),
-			circle = document.querySelector('.loader_circle'),
-			menu = document.querySelector('.menu_wrapper'),
+		var menu = document.querySelector('.menu'),
+			body = document.getElementsByTagName('body')[0],
 			img = document.querySelector('.loader_img'),
-			start = new TimelineMax()
+			link = document.querySelector('.intro_link'),
+			start = new TimelineMax();
 			
 		start
-			.to(circle, 0.5, {scale: 0, ease: Expo.easeOut, delay: 2})
-			.set(loader, {display: 'none'})
-			.set(menu, {zIndex: 5})
+			.set(body, {overflowY: 'auto'}, 2)
+			.set(menu, {zIndex: 5, opacity: 1}, 2)
+			.set(link, {zIndex: 5}, 2)
 			.addCallback(logo.intro, 2)
 			.addCallback(animIntro, 2)
-			.addCallback(onResize, 2)		
+			.addCallback(onResize, 2);	
 	});
 //
 
-	var fn = {},
-		iconspar = new Icons(),
-		scroll = new AutoScroll(fn)
-		imgTilt = new ImgTilt();
-	
-	imgTilt.enable();
-	
+// section specific animations
+	var projects = [].slice.call(document.querySelectorAll('.proj_el')),
+		introText = [].slice.call(document.querySelectorAll('.intro_title, .intro_subtitle, .intro_link')),
+		skills = [].slice.call(document.querySelectorAll('.skills_title, .skills_about, .skills_list')),
+		icons = [].slice.call(document.querySelectorAll('.skills_icon')),
+		links = [].slice.call(document.querySelectorAll('.contact_title, .icons_el, .contact_input, .contact_submit'))
+		contactIcons = [].slice.call(document.querySelectorAll('.icons_icon'));
+
+	shuffle(icons);
+
+	function animIntro(){
+		TweenMax.staggerFrom(introText, 1, {y: 300, opacity: 0, ease: Expo.easeOut}, 0.1);
+	}
+
+
+		var controller = new ScrollMagic.Controller();
+
+		var skillSlide = new TimelineMax()
+			.staggerFrom(skills, 1, {y: 100, opacity: 0, ease: Circ.easeOut, clearProps: 'transform'}, 0.05)
+			.staggerFrom(icons, 1, {scale: 0, ease: Back.easeOut}, 0.1, 0.1);
+		var skillsParalax = new TimelineMax()
+			.fromTo(icons.slice(0, 7), 2, {y: '-25px', ease:Power0.easeNone}, {y: '25px', ease:Power0.easeNone}, 0)
+			.fromTo(icons.slice(7, 14), 2, {y: '-50px', ease:Power0.easeNone}, {y: '50px', ease:Power0.easeNone}, 0)
+			.fromTo(icons.slice(14, 22), 2, {y: '-100px', ease:Power0.easeNone}, {y: '100px', ease:Power0.easeNone}, 0);
+		var contactSlide = new TimelineMax()
+			.staggerFrom(links, 1, {y: 100, opacity: 0, ease: Circ.easeOut}, 0.1)
+			.staggerFrom(contactIcons, 1, {scale: 0, ease: Back.easeOut}, 0.1, 0.1);
+
+		
+		var sec0 = new ScrollMagic.Scene({
+			triggerElement: '#projects',
+			triggerHook: 0.8
+		})
+			.on('enter', function(){ logo.scale.play(); logo.disableHover(); })
+			.on('leave', function(){ logo.scale.reverse(); logo.enableHover(); })
+			.addTo(controller);
+
+		projects.forEach(function(el, i){
+			var rProject = new ScrollMagic.Scene({
+				triggerElement: el,
+				triggerHook: 0.9
+			})
+				.setTween(TweenLite.from(el.children[0], 1, {y: 100, opacity: 0}))
+				.addTo(controller);
+		});
+
+		
+
+		var sec2 = new ScrollMagic.Scene({
+			triggerElement: '#skills', 
+			triggerHook: 0.7
+		})
+			.addTo(controller)
+			.setTween(skillSlide);
+
+		var paralax = new ScrollMagic.Scene({
+			triggerElement: '.skills_list', 
+			triggerHook: 1,
+			duration: '150%'
+		})
+			.addTo(controller)
+			.setTween(skillsParalax);
+
+		var sec3 = new ScrollMagic.Scene({
+			triggerElement: '#contact', 
+			triggerHook: 0.7
+		})
+			.addTo(controller)
+			.setTween(contactSlide);
+
+//
+
 	window.addEventListener('resize', onResize);
 
 	function onResize(ev){
 		width = window.innerWidth;
 		height = window.innerHeight;
 		mobile = (width < 769 || height < 601) ? true : false;
-
-		imgTilt.resize();
 		if (mobile) {
-			if (!inputFocus) scroll.enableMobile();
 			logo.disableHover();
-			iconspar.enable();
-			logo.clearProps();
 		} else {
-			scroll.enableDesktop();
-			logo.resize();
-			logo.enableHover();
-			if (currentSec === 0){
-				logo.scale.reverse();
-			} else {
-				logo.scale.play();
-			}
+			logo.enableHover()
 		}
 	}
 
-// section specific animations
-	var projects = [].slice.call(document.querySelectorAll('.proj_list li')),
-		menu = document.querySelector('.menu'),
-		introText = [].slice.call(document.querySelectorAll('.intro_title, .intro_subtitle, .intro_link')),
-		arrows = [].slice.call(document.querySelectorAll('.intro_arrow')),
-		skills = [].slice.call(document.querySelectorAll('.skills_title, .skills_list li')),
-		icons = [].slice.call(document.querySelectorAll('.skills_icon')),
-		links = [].slice.call(document.querySelectorAll('.contact_title, .icons_el')),
-		form = [].slice.call(document.querySelectorAll('.contact_input, .contact_submit'));
+	var triangles = [];
 
-	shuffle(icons);
+	projects.forEach(function (el,i) {
+		triangles[i] = el.children[0].children[1].children[0].children;
 
-	function animIntro(){
-		TweenMax.staggerFrom(introText, 1, {y: +300, opacity: 0, ease: Expo.easeOut}, 0.1);
-	}
+		el.addEventListener('mouseenter', function(){
+			TweenMax.staggerTo(triangles[i], 0.4, {scale: 0}, 0.005);
+		});
 
-	fn.enterSec0 = function(){
-		logo.scale.reverse();
-		logo.enableHover();
-		imgTilt.enable();
-		animIntro();
-	};
+		el.addEventListener('mouseleave', function(){
+			TweenMax.staggerTo(triangles[i], 0.4, {scale: 1}, 0.005);
+		});
 
-	fn.leaveSec0 = function(){
-		logo.scale.play();
-		logo.disableHover();
-		imgTilt.disable();
-	};
+	});
 
-	fn.enterSec1 = function(){	
-		TweenMax.staggerFrom(projects, 0.75, {y:'+=500', opacity: 0}, 0.05);
-	};
-
-	fn.leaveSec1 = function(){
-	};
-
-	fn.enterSec2 = function(){
-		TweenMax.staggerFrom(skills, 1, {x: '-=500', opacity: 0, ease: Circ.easeOut, clearProps: 'transform'}, 0.05);
-		TweenMax.staggerFrom(icons, 1, {scale: 0, ease: Back.easeOut}, 0.05);
-		iconspar.enable();
-	};
-
-	fn.leaveSec2 = function(){
-		iconspar.disable();
-	};
-
-	fn.enterSec3 = function(){
-		TweenMax.staggerFrom(links, 1, {y: '+=500', opacity: 0, ease: Circ.easeOut}, 0.1);
-		TweenMax.staggerFrom(form, 1, {y: '+=500', opacity: 0, ease: Circ.easeOut, clearProps: 'all'}, 0.1);
-	};
-
-	fn.leaveSec3 = function(){
-		setTimeout(function(){
-			document.querySelector('.contact_overlay').classList.remove('done');
-		}, 1000);
-	};
-//
 }());

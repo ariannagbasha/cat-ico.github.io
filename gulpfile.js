@@ -12,6 +12,10 @@ var gulp = require('gulp'),
 	pug = require('gulp-pug'),
 	htmlmin = require('gulp-htmlmin')
 
+	//svg
+	svgmin = require('gulp-svgmin'),
+	svgstore = require('gulp-svgstore')
+
 	//other
 	bsync = require('browser-sync').create(),
 	newer = require('gulp-newer')
@@ -19,6 +23,7 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	merge = require('merge2'),
 	runSequence = require('run-sequence'),
+	path = require('path'),
 	plumber = require('gulp-plumber');
 
 
@@ -57,7 +62,7 @@ gulp.task('scripts', function(){
     	}
 		}))
 		.pipe(concat('script.js'))					
-		.pipe(uglify())										
+		// .pipe(uglify())										
 		.pipe(gulp.dest('./'))
 		.pipe(bsync.reload({ stream: true }));
 
@@ -84,7 +89,7 @@ gulp.task('views', function(){
 });
 
 gulp.task('images', function(){
-  return gulp.src('src/img/**/*.+(png|jpg|jpeg|gif|svg)')
+  return gulp.src('src/img/**/*.+(png|jpg|jpeg|gif)')
   	.pipe(plumber({
 			errorHandler: function (err) {
         console.log(err);
@@ -99,6 +104,12 @@ gulp.task('favicon', function(){
   return gulp.src('src/favicon/*')
 	  .pipe(gulp.dest('favicon'))
 	  .pipe(bsync.reload({ stream: true }))
+});
+
+gulp.task('svgstore', function(){
+  return gulp.src('src/img/*.svg')
+	  .pipe(svgmin())
+	  .pipe(gulp.dest('img'))
 });
 
 gulp.task('watch', function(){

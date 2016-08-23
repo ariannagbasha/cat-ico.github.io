@@ -58,6 +58,10 @@
 		}
 	});
 
+	document.getElementById("hire").addEventListener("click", function(){
+		document.getElementsByName("name")[0].focus();
+	});
+
 	function validate(){
 		for (var i=0; i<fields.length; i++){
 			input = fields[i].value.trim();

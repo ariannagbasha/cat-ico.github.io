@@ -4,12 +4,18 @@ $edward: #AAAFAF;
 $cream: #FFFFCB;
 $chateau-green: #3EAE68;
 $red: red;
+$black: rgb(20, 20, 20);
+$white: rgb(255, 255, 255);
+$orange: #FF5714;
+$gold: #CCA43B;
+$platinum: #E5E5E5;
 //
 
-$bg: $deep-teal;
+$bg: $black;
 $text: $edward;
 $hover: $chateau-green;
-$h2: $chateau-green;
+$h2: $white;
+// $hover: $gold;
 //
 
 $input-bg: $bg;
@@ -23,9 +29,11 @@ $section-right-title: $hover;
 $intro-bg: $bg;
 $intro-text: $text;
 $intro-border: $text;
+$intro-title: $h2;
+$intro-arrow: $hover;
 
-$menu-bg: lighten($text, 30);
-$menu-hover: lighten($text, 30);
+$menu-bg: $h2;
+$menu-hover: $text;
 $menu-active: $hover;
 $menu-text: $bg;
 $menu-active-text: $bg;
@@ -33,14 +41,14 @@ $menu-active-text: $bg;
 $proj-bg: $bg;
 $proj-text: $text;
 $proj-border: rgba($proj-text, .5);
-$proj-overlay: rgba($proj-bg, .9);
+$proj-overlay: rgba($proj-bg, .2);
 $proj-link: $hover;
-$proj-title: $hover;
+$proj-title: $h2;
 
-$skill-col: $bg;
+$skill-col: $hover;
 $skill-shadow: $red;
-$skill-title: $hover;
-$skill-bg: $hover;
+$skill-title: $h2;
+$skill-bg: $bg;
 
 $contact-bg: $bg;
 $contact-title: $h2;
@@ -48,12 +56,15 @@ $contact-text: $text;
 $contact-hover: $hover;
 $contact-border: $text;
 
-$icon-hover: lighten($text, 30);
+$icon-hover: $hover;
 $icon-fill: $hover;
 $icon-text: $text;
-$icon-bg: rgba($text, 0.1);
 
 $skew: 20;
 
 $mobile: 768px;
 $minHeight: 600px;
+
+// $font1: 'Wire One';
+$font1: 'Raleway';
+$font2: 'Raleway';
