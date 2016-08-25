@@ -6,13 +6,14 @@
 		display: inline-block;
 		width: 50%;
 		vertical-align: top;
-	}
-
-	&_about{
+		line-height: 1.2;
 		color: $icon-text;
 		font-size: 30px;
 		font-weight: 300;
-		line-height: 1.2;
+	}
+
+	&_about{
+		
 	}
 
 	&_about{
@@ -30,18 +31,11 @@
 	&_list{
 		margin-top: 50px;
 		margin-left: 50px;
-		color: $icon-text;
-		font-size: 28px;
-		font-weight: 300;
-		line-height: 1.5;
+		text-align: right;
 
 		span{
-			content: '';
-			display: inline-block;
-			height: 1px;
-			width: 30px;
-			background-color: $icon-text;
-			margin: 0 10px 8px 10px;
+			font-weight: 400;
+			color: $h2;
 		}
 	}
 
@@ -137,6 +131,7 @@
 			left: 0;
 			z-index: -1;
 			opacity: 0.3;
+			width: 100%;
 		}
 	}
 }

@@ -1,38 +1,32 @@
 (function(){
-	var $menuBtn = [].slice.call(document.querySelectorAll(".menu_btn")),
-		$burger = document.querySelector(".menu_opener"),
-		$menu = document.querySelector(".menu"),
-		wrapper = document.querySelector(".menu_wrapper"),
-		$burgerIcon = $burger.children[0],
+	var menuBtn = [].slice.call(document.querySelectorAll(".menu_btn")),
+		burger = document.querySelector(".menu_opener"),
+		menu = document.querySelector(".menu"),
+		burgerIcon = burger.children[0],
 		isSafari = /constructor/i.test(window.HTMLElement),
 		menuOpen=false,
 		spacing=75;
 
-	if (isSafari) {
-		wrapper.style.filter= "none";
-		wrapper.style.webkitFilter = "none";
-	}
-
 	function open(){
-		$menu.classList.toggle('open');
-		TweenLite.to($burger,0.1,{
+		menu.classList.toggle('open');
+		TweenLite.to(burger,0.1,{
 			scaleX:1.2,
 			scaleY:0.8,
 			ease:Quad.easeOut,
 			onComplete:function(){
-				TweenLite.to($burger,0.8,{
+				TweenLite.to(burger,0.8,{
 					scale:0.8,
 					ease:Elastic.easeOut,
 					easeParams:[1.1,0.8]
 				});
-				TweenLite.to($burgerIcon,0.8,{
+				TweenLite.to(burgerIcon,0.8,{
 					scale:1.4,
 					ease:Elastic.easeOut,
 					easeParams:[1.1,0.8]
 				});
 			}
 		});
-		$menuBtn.forEach(function(el, i){
+		menuBtn.forEach(function(el, i){
 			TweenLite.to(el,0.8*(i+1),{
 				x:(i+1)*spacing,
 				scaleY:0.8,
@@ -57,16 +51,16 @@
 		});
 	}
 	function close(){
-		TweenLite.to([$burger,$burger.children[0]],0.1,{
+		TweenLite.to([burger,burger.children[0]],0.1,{
 			delay:0.1,
 			scale:1,
 			ease:Elastic.easeOut,
 			easeParams:[1.1,0.3],
 			onComplete:function(){
-				$menu.classList.toggle('open');
+				menu.classList.toggle('open');
 			}
 		});
-		$menuBtn.forEach(function(el, i){
+		menuBtn.forEach(function(el, i){
 			var dist=Math.abs(i+1);
 			TweenLite.to(el,0.8+((-dist)*0.1),{
 				x:0,
@@ -85,11 +79,11 @@
 		menuOpen=!menuOpen;
 		menuOpen ? open() : close();
 	}
-	$burger.addEventListener('mousedown',function(){
+	burger.addEventListener('mousedown',function(){
 		toggle();
 	});
 
-	$menuBtn.forEach(function(el, i){
+	menuBtn.forEach(function(el, i){
 		el.addEventListener('click',function(){
 			toggle();
 		});

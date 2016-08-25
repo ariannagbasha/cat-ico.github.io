@@ -35,21 +35,22 @@
 		TweenMax.staggerFrom(introText, 1, {y: 300, opacity: 0, ease: Expo.easeOut}, 0.1);
 	}
 
+	// TweenLite.set(document.getElementById('input-3'), {y: 43});
 
+	function startAnim(){
 		var controller = new ScrollMagic.Controller();
 
-		var skillSlide = new TimelineMax()
-			.staggerFrom(skills, 1, {y: 100, opacity: 0, ease: Circ.easeOut, clearProps: 'transform'}, 0.05)
-			.staggerFrom(icons, 1, {scale: 0, ease: Back.easeOut}, 0.1, 0.1);
 		var skillsParalax = new TimelineMax()
 			.fromTo(icons.slice(0, 7), 2, {y: '-25px', ease:Power0.easeNone}, {y: '25px', ease:Power0.easeNone}, 0)
 			.fromTo(icons.slice(7, 14), 2, {y: '-50px', ease:Power0.easeNone}, {y: '50px', ease:Power0.easeNone}, 0)
 			.fromTo(icons.slice(14, 22), 2, {y: '-100px', ease:Power0.easeNone}, {y: '100px', ease:Power0.easeNone}, 0);
+		var skillSlide = new TimelineMax()
+			.staggerFrom(skills, 1, {y: 100, opacity: 0, ease: Circ.easeOut, clearProps: 'transform'}, 0.05)
+			.staggerFrom(icons, 1, {scale: 0, ease: Back.easeOut}, 0.1, 0.1);
 		var contactSlide = new TimelineMax()
 			.staggerFrom(links, 1, {y: 100, opacity: 0, ease: Circ.easeOut}, 0.1)
 			.staggerFrom(contactIcons, 1, {scale: 0, ease: Back.easeOut}, 0.1, 0.1);
 
-		
 		var sec0 = new ScrollMagic.Scene({
 			triggerElement: '#projects',
 			triggerHook: 0.8
@@ -67,8 +68,6 @@
 				.addTo(controller);
 		});
 
-		
-
 		var sec2 = new ScrollMagic.Scene({
 			triggerElement: '#skills', 
 			triggerHook: 0.7
@@ -76,24 +75,28 @@
 			.addTo(controller)
 			.setTween(skillSlide);
 
-		var paralax = new ScrollMagic.Scene({
-			triggerElement: '.skills_list', 
-			triggerHook: 1,
-			duration: '150%'
-		})
-			.addTo(controller)
-			.setTween(skillsParalax);
-
 		var sec3 = new ScrollMagic.Scene({
 			triggerElement: '#contact', 
 			triggerHook: 0.7
 		})
 			.addTo(controller)
-			.setTween(contactSlide);
+			.setTween(contactSlide);	
 
+		var paralax = new ScrollMagic.Scene({
+			triggerElement: '.skills_col', 
+			triggerHook: 1,
+			duration: '150%'
+		})
+		.addTo(controller)
+		.setTween(skillsParalax);
+	}
+
+	
 //
 
 	window.addEventListener('resize', onResize);
+
+	var anim = false;
 
 	function onResize(ev){
 		width = window.innerWidth;
@@ -101,24 +104,31 @@
 		mobile = (width < 769 || height < 601) ? true : false;
 		if (mobile) {
 			logo.disableHover();
+			if (anim) {
+				anim = false;
+			}
 		} else {
-			logo.enableHover()
+			logo.enableHover();
+			projHover();
+			if (!anim) {
+				startAnim();
+				anim = true;
+			}
 		}
 	}
 
-	var triangles = [];
+	function projHover(){
+		var triangles = [];
 
-	projects.forEach(function (el,i) {
-		triangles[i] = el.children[0].children[1].children[0].children;
-
-		el.addEventListener('mouseenter', function(){
-			TweenMax.staggerTo(triangles[i], 0.4, {scale: 0}, 0.005);
+		projects.forEach(function (el,i) {
+			triangles[i] = el.children[0].children[1].children[0].children;
+			el.addEventListener('mouseenter', function(){
+				TweenMax.staggerTo(triangles[i], 0.4, {scale: 0}, 0.005);
+			});
+			el.addEventListener('mouseleave', function(){
+				TweenMax.staggerTo(triangles[i], 0.4, {scale: 1}, 0.005);
+			});
 		});
-
-		el.addEventListener('mouseleave', function(){
-			TweenMax.staggerTo(triangles[i], 0.4, {scale: 1}, 0.005);
-		});
-
-	});
+	}
 
 }());

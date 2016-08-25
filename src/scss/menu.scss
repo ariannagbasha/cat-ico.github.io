@@ -138,3 +138,5 @@ $item-size: $menu-size - 20px;
   	}
   }
 }
+
+_::-webkit-:not(:root:root), .menu { filter: none; }

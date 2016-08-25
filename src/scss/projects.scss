@@ -109,6 +109,10 @@
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
+
+		&_poly{
+			display: none;
+		}
 		
 		&_el{
 
@@ -124,27 +128,13 @@
 
 			&:nth-child(1),
 			&:nth-child(5){
-				width: 48%;
-			}
+				width: 60%;
+				overflow: hidden;
+				height: 300px;
 
-			&:nth-child(5){
-				order: 1;
-				margin-right: 4%;
-
-				.proj_wrap{
-					height: 400px;
+				.proj_overlay{
+					height: 300px;
 				}
-			}
-
-			&:nth-child(1){
-				order: 2;
-				align-self: flex-end;
-				margin-top: -400px;
-			}
-
-			&:nth-child(6){
-				order: 3;
-				align-self: flex-start;
 			}
 		}
 	}
@@ -171,10 +161,6 @@
 					height: 450px;
 				}
 			}
-		}
-
-		&_poly{
-			display: none;
 		}
 	}
 }

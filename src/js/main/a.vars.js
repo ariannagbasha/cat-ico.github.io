@@ -12,4 +12,4 @@ function shuffle(a){
   }
 }
 
-var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+// console.log(navigator.userAgent);

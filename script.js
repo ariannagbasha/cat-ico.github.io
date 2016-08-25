@@ -10929,7 +10929,7 @@ function shuffle(a){
   }
 }
 
-var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+// console.log(navigator.userAgent);
 
 (function(){
 
@@ -11217,21 +11217,22 @@ var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 		TweenMax.staggerFrom(introText, 1, {y: 300, opacity: 0, ease: Expo.easeOut}, 0.1);
 	}
 
+	// TweenLite.set(document.getElementById('input-3'), {y: 43});
 
+	function startAnim(){
 		var controller = new ScrollMagic.Controller();
 
-		var skillSlide = new TimelineMax()
-			.staggerFrom(skills, 1, {y: 100, opacity: 0, ease: Circ.easeOut, clearProps: 'transform'}, 0.05)
-			.staggerFrom(icons, 1, {scale: 0, ease: Back.easeOut}, 0.1, 0.1);
 		var skillsParalax = new TimelineMax()
 			.fromTo(icons.slice(0, 7), 2, {y: '-25px', ease:Power0.easeNone}, {y: '25px', ease:Power0.easeNone}, 0)
 			.fromTo(icons.slice(7, 14), 2, {y: '-50px', ease:Power0.easeNone}, {y: '50px', ease:Power0.easeNone}, 0)
 			.fromTo(icons.slice(14, 22), 2, {y: '-100px', ease:Power0.easeNone}, {y: '100px', ease:Power0.easeNone}, 0);
+		var skillSlide = new TimelineMax()
+			.staggerFrom(skills, 1, {y: 100, opacity: 0, ease: Circ.easeOut, clearProps: 'transform'}, 0.05)
+			.staggerFrom(icons, 1, {scale: 0, ease: Back.easeOut}, 0.1, 0.1);
 		var contactSlide = new TimelineMax()
 			.staggerFrom(links, 1, {y: 100, opacity: 0, ease: Circ.easeOut}, 0.1)
 			.staggerFrom(contactIcons, 1, {scale: 0, ease: Back.easeOut}, 0.1, 0.1);
 
-		
 		var sec0 = new ScrollMagic.Scene({
 			triggerElement: '#projects',
 			triggerHook: 0.8
@@ -11249,8 +11250,6 @@ var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 				.addTo(controller);
 		});
 
-		
-
 		var sec2 = new ScrollMagic.Scene({
 			triggerElement: '#skills', 
 			triggerHook: 0.7
@@ -11258,24 +11257,28 @@ var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 			.addTo(controller)
 			.setTween(skillSlide);
 
-		var paralax = new ScrollMagic.Scene({
-			triggerElement: '.skills_list', 
-			triggerHook: 1,
-			duration: '150%'
-		})
-			.addTo(controller)
-			.setTween(skillsParalax);
-
 		var sec3 = new ScrollMagic.Scene({
 			triggerElement: '#contact', 
 			triggerHook: 0.7
 		})
 			.addTo(controller)
-			.setTween(contactSlide);
+			.setTween(contactSlide);	
 
+		var paralax = new ScrollMagic.Scene({
+			triggerElement: '.skills_col', 
+			triggerHook: 1,
+			duration: '150%'
+		})
+		.addTo(controller)
+		.setTween(skillsParalax);
+	}
+
+	
 //
 
 	window.addEventListener('resize', onResize);
+
+	var anim = false;
 
 	function onResize(ev){
 		width = window.innerWidth;
@@ -11283,62 +11286,63 @@ var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 		mobile = (width < 769 || height < 601) ? true : false;
 		if (mobile) {
 			logo.disableHover();
+			if (anim) {
+				anim = false;
+			}
 		} else {
-			logo.enableHover()
+			logo.enableHover();
+			projHover();
+			if (!anim) {
+				startAnim();
+				anim = true;
+			}
 		}
 	}
 
-	var triangles = [];
+	function projHover(){
+		var triangles = [];
 
-	projects.forEach(function (el,i) {
-		triangles[i] = el.children[0].children[1].children[0].children;
-
-		el.addEventListener('mouseenter', function(){
-			TweenMax.staggerTo(triangles[i], 0.4, {scale: 0}, 0.005);
+		projects.forEach(function (el,i) {
+			triangles[i] = el.children[0].children[1].children[0].children;
+			el.addEventListener('mouseenter', function(){
+				TweenMax.staggerTo(triangles[i], 0.4, {scale: 0}, 0.005);
+			});
+			el.addEventListener('mouseleave', function(){
+				TweenMax.staggerTo(triangles[i], 0.4, {scale: 1}, 0.005);
+			});
 		});
-
-		el.addEventListener('mouseleave', function(){
-			TweenMax.staggerTo(triangles[i], 0.4, {scale: 1}, 0.005);
-		});
-
-	});
+	}
 
 }());
 (function(){
-	var $menuBtn = [].slice.call(document.querySelectorAll(".menu_btn")),
-		$burger = document.querySelector(".menu_opener"),
-		$menu = document.querySelector(".menu"),
-		wrapper = document.querySelector(".menu_wrapper"),
-		$burgerIcon = $burger.children[0],
+	var menuBtn = [].slice.call(document.querySelectorAll(".menu_btn")),
+		burger = document.querySelector(".menu_opener"),
+		menu = document.querySelector(".menu"),
+		burgerIcon = burger.children[0],
 		isSafari = /constructor/i.test(window.HTMLElement),
 		menuOpen=false,
 		spacing=75;
 
-	if (isSafari) {
-		wrapper.style.filter= "none";
-		wrapper.style.webkitFilter = "none";
-	}
-
 	function open(){
-		$menu.classList.toggle('open');
-		TweenLite.to($burger,0.1,{
+		menu.classList.toggle('open');
+		TweenLite.to(burger,0.1,{
 			scaleX:1.2,
 			scaleY:0.8,
 			ease:Quad.easeOut,
 			onComplete:function(){
-				TweenLite.to($burger,0.8,{
+				TweenLite.to(burger,0.8,{
 					scale:0.8,
 					ease:Elastic.easeOut,
 					easeParams:[1.1,0.8]
 				});
-				TweenLite.to($burgerIcon,0.8,{
+				TweenLite.to(burgerIcon,0.8,{
 					scale:1.4,
 					ease:Elastic.easeOut,
 					easeParams:[1.1,0.8]
 				});
 			}
 		});
-		$menuBtn.forEach(function(el, i){
+		menuBtn.forEach(function(el, i){
 			TweenLite.to(el,0.8*(i+1),{
 				x:(i+1)*spacing,
 				scaleY:0.8,
@@ -11363,16 +11367,16 @@ var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 		});
 	}
 	function close(){
-		TweenLite.to([$burger,$burger.children[0]],0.1,{
+		TweenLite.to([burger,burger.children[0]],0.1,{
 			delay:0.1,
 			scale:1,
 			ease:Elastic.easeOut,
 			easeParams:[1.1,0.3],
 			onComplete:function(){
-				$menu.classList.toggle('open');
+				menu.classList.toggle('open');
 			}
 		});
-		$menuBtn.forEach(function(el, i){
+		menuBtn.forEach(function(el, i){
 			var dist=Math.abs(i+1);
 			TweenLite.to(el,0.8+((-dist)*0.1),{
 				x:0,
@@ -11391,11 +11395,11 @@ var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 		menuOpen=!menuOpen;
 		menuOpen ? open() : close();
 	}
-	$burger.addEventListener('mousedown',function(){
+	burger.addEventListener('mousedown',function(){
 		toggle();
 	});
 
-	$menuBtn.forEach(function(el, i){
+	menuBtn.forEach(function(el, i){
 		el.addEventListener('click',function(){
 			toggle();
 		});
