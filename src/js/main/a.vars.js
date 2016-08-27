@@ -12,4 +12,10 @@ function shuffle(a){
   }
 }
 
-// console.log(navigator.userAgent);
+function device(){
+	width = window.innerWidth;
+	height = window.innerHeight;
+	mobile = (width < 769 || height < 601) ? true : false;
+}
+
+device();

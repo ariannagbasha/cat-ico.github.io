@@ -99,9 +99,7 @@
 	var anim = false;
 
 	function onResize(ev){
-		width = window.innerWidth;
-		height = window.innerHeight;
-		mobile = (width < 769 || height < 601) ? true : false;
+		device();
 		if (mobile) {
 			logo.disableHover();
 			if (anim) {
