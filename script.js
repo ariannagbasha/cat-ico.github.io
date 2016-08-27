@@ -11399,11 +11399,14 @@ function shuffle(a){
 		toggle();
 	});
 
-	menuBtn.forEach(function(el, i){
-		el.addEventListener('click',function(){
-			toggle();
+	if (mobile){
+		menuBtn.forEach(function(el, i){
+			el.addEventListener('click',function(){
+				toggle();
+			});
 		});
-	});
+	}
+	
 	
 }());
 (function(){
