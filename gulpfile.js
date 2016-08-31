@@ -12,7 +12,8 @@ var gulp = require('gulp'),
 	pug = require('gulp-pug'),
 	htmlmin = require('gulp-htmlmin')
 
-	//svg
+	//img & svg
+	imagemin = require('gulp-imagemin'),
 	svgmin = require('gulp-svgmin'),
 	svgstore = require('gulp-svgstore')
 
@@ -96,6 +97,7 @@ gulp.task('images', function(){
     	  this.emit('end');
     	}
 		}))
+		.pipe(imagemin())
 	  .pipe(gulp.dest('img'))
 	  .pipe(bsync.reload({ stream: true }))
 });
