@@ -2,6 +2,13 @@
 
 	var fields = [].slice.call(document.querySelectorAll('.contact_field'));
 
+	console.log(window.location.hash);
+	if (window.location.hash == '#contact_form') {
+		document.querySelector('.contact_submit').disabled = true;
+		document.querySelector(".contact_form").classList.add('done');
+	}
+
+
 	fields.forEach(function(inputEl){
 		if(inputEl.value.trim() !== '') inputEl.parentNode.classList.add('filled');
 		inputEl.addEventListener('focus', onInputFocus);
@@ -20,34 +27,9 @@
 		}
 	}
 
-	var ajax = {
-		ready: function ready (fn) {
-		  if (typeof fn !== 'function') { return; }
-		  if (document.readyState === 'complete') { return fn(); }
-
-		  document.addEventListener('DOMContentLoaded', fn, false);
-		},
-		req: function ajaxRequest (method, url, data, callback) {
-		  var xmlhttp = new XMLHttpRequest();
-
-		  xmlhttp.onreadystatechange = function () {
-		    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-		      callback(xmlhttp.response);
-		    }
-		  };
-
-		  xmlhttp.open(method, url, true);
-		  xmlhttp.setRequestHeader("Accept", "application/json");
-		  xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		  xmlhttp.send(data);
-		}
-	};
-
 	document.getElementById("contact_form").addEventListener("submit", function(ev){
 		ev.preventDefault();
 		if (validate()){
-			document.querySelector('.contact_submit').disabled = true;
-			document.querySelector(".contact_form").classList.add('done');
 			this.submit()
 		}
 	});

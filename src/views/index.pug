@@ -143,7 +143,9 @@ html(lang="en")
 				.contact_right
 					.contact_form
 						.contact_overlay Thank you! I'll be in touch soon.
-						form#contact_form(autocomplete="off", novalidate, action="https://formspree.io/your@email.com", method="POST")
+						form#contact_form(autocomplete="off", novalidate, action="https://formspree.io/caticoapps@gmail.com", method="POST")
+							input(type="hidden" name="_next" value="#contact_form")
+							input(type="text" name="_gotcha" style="display:none")
 							span.contact_input
 								input.contact_field#input-1(type="text", name="name", required)
 								.contact_error(data-name="name") Please provide your name

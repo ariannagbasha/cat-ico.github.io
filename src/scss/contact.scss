@@ -61,15 +61,7 @@
 				}
 
 				&_submit{
-					cursor: auto;
-
-					span{
-						transform: rotateX(90deg) translateY(-25px);
-					}
-
-					&:focus{
-						outline: none;
-					}
+					visibility: hidden;
 				}
 			}
 		}
