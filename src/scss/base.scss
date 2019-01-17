@@ -18,6 +18,7 @@ body{
 	margin: 0 auto;
 	padding: 100px 50px;
 	transition: filter .5s;
+	clear: both;
 }
 
 .lb .section{
@@ -37,7 +38,7 @@ input:-webkit-autofill:focus {
 input:-moz-ui-invalid:not(output),
 textarea:-moz-ui-invalid:not(output) {
   box-shadow: 0 0 1.5px 1px transparent;
-} 
+}
 
 a, button {
 	outline: none;

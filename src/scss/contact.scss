@@ -16,7 +16,7 @@
 		background: $bg;
 	}
 
-	&_left, 
+	&_left,
 	&_right{
 		display: inline-block;
 		vertical-align: top;
@@ -279,7 +279,7 @@
   10%, 90% {
     transform: translate3d(-1px, 0, 0);
   }
-  
+
   20%, 80% {
     transform: translate3d(2px, 0, 0);
   }
@@ -295,7 +295,7 @@
 
 @media screen and (max-width: 1200px){
 	.contact{
-		
+
 		&_title{
 			font-size: 70px;
 		}
@@ -309,7 +309,7 @@
 
 @media screen and (max-width: 768px){
 	.contact{
-		
+
 		&_right{
 			width: 100%;
 			padding: 0;
@@ -331,7 +331,7 @@
 
 @media screen and (max-width: 500px){
 	.contact{
-		
+
 		&_title{
 			font-size: 50px;
 		}

@@ -46,15 +46,9 @@
 	document.getElementById("contact_form").addEventListener("submit", function(ev){
 		ev.preventDefault();
 		if (validate()){
-			ajax.ready(ajax.req(
-				'POST', 
-				'https://formspree.io/hello@catico.xyz',
-				serialize(ev.target.elements),
-				function(){
-					document.querySelector('.contact_submit').disabled = true;
-					document.querySelector(".contact_form").classList.add('done');
-				}
-			));
+			document.querySelector('.contact_submit').disabled = true;
+			document.querySelector(".contact_form").classList.add('done');
+			this.submit()
 		}
 	});
 
@@ -84,7 +78,7 @@
 	function serialize(inputs){
 		var data = '';
 		for(var i=0; i<inputs.length; i++){
-			data += inputs[i].name+'='+inputs[i].value+'&'; 
+			data += inputs[i].name+'='+inputs[i].value+'&';
 		}
 		return data;
 	}
